@@ -1,0 +1,58 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/styles/main.css">
+
+<div class="container-xxl px-md-5 bg-white shadow-lg">
+
+
+    <%- include("partials/header.ejs") %>
+<h1 class="pb-4">Explore Categories</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <li class="breadcrumb-item"><a href="/categories/">Categories</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Explore Categories</li>
+    </ol>
+  </nav>
+
+<div class="d-flex row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-4">
+<% if(typeof categories !=='undefined' && categories.length > 0) { %>
+<% categories.forEach((category)=>{   %>
+    <a href="/categories/<%= category.name %>" class="col text-center category__link px-4">
+        <div class="category__img shadow">
+            <img src="/img/<%= category.image %>" alt="<%= category.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= category.name %></div>
+    </a>
+<%    });   %>
+<%    };   %>
+
+</div>
+
+
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+
+<% if(typeof categoryByID !=='undefined' && categoryByID.length > 0) { %>
+    <% categoryByID.forEach((recipe)=>{   %>
+        <a href="/recipe/<%= recipe.id %>" class="col text-center category__link">
+            <div class="category__img category__img--large shadow">
+                <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+            </div>
+            <div class="pt-1"><%= recipe.name %></div>
+        </a>
+    <%    });   %>
+<%    };   %>
+
+   
+</div>
+
+
+
+
+<%- include("partials/footer.ejs") %>
+</div>
+
